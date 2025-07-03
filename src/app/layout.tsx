@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import StoryblokProvider from "@/components/StoryblokProvider";
+import Link from "next/link";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -23,12 +25,18 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
-      </body>
-    </html>
+    <StoryblokProvider>
+      <html lang="en">
+        <body className={`bg-blue-50`}>
+          <header>
+            <nav className="container mx-auto px-4 w-full py-8 flex justify-between">
+              <Link href={"/"}>Home</Link>
+              <Link href={"/tours"}>Tours</Link>
+            </nav>
+          </header>
+          {children}
+        </body>
+      </html>
+    </StoryblokProvider>
   );
 }
