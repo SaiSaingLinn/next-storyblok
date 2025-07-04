@@ -3,11 +3,11 @@ import {
   StoryblokServerComponent,
 } from "@storyblok/react/rsc";
 
-export default function Page({ blok }: { blok: any }) {
+export default function Page(params: any) {
   return (
-    <main>
-      {blok.blocks.map((nestedBlok: any) => (
-        <StoryblokServerComponent blok={nestedBlok} key={nestedBlok._uid} />
+    <main {...storyblokEditable(params.blok)}>
+      {params.blok.blocks.map((blok: any) => (
+        <StoryblokServerComponent blok={blok} key={blok._uid} />
       ))}
     </main>
   );
